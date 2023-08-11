@@ -1,6 +1,7 @@
 #Functions file
 import csv
 from entradas_x_dia import *
+from entradas_x_activo import *
 
 
 
@@ -9,21 +10,13 @@ def function(menu):
     if menu == 1:
 
         entradas_x_dia()
-                
+        #despues vuelve aca        
                 
                 
                 
     
     elif menu == 2:
-        with open(journal_file) as journal_file:
-
-            journal = csv.reader(journal_file, delimiter=';')
-            next(journal)
-
-            print("\n\nEntradas por activo.")
-            for row in journal:
-                
-                print(row[3])
+        entradas_x_activo()
 
     
     elif menu == 3:
@@ -34,7 +27,7 @@ def function(menu):
 
    
     
-    return user_input
+    
     
     
 
