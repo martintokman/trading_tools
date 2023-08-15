@@ -2,16 +2,57 @@
 import sys
 import csv
 
+def mostrar_menu_principal():
+    print("Menú principal:")
+    print("1. Listado de entradas x día")
+    print("2. Listado de entradas x activo")
+    print("3. Salir")
 
-def menu_entradas_x_dia(menu):
-    if menu == 1:
-        mostrar_entradas_x_dia()
+def menu_principal_1():
+    lista = lista_entradas_x_dia()
 
+    while True:
+        
+        user_input = int(input("Ingrese opción: ")) 
+    
+        if user_input  > len(lista) :
+            print("Opción no válida, vuelve a intentar.")
+            continue
+        else:
+            break
+    
+    fecha_a_buscar = lista[user_input - 1]
+    print(f"\nFecha a buscar: {fecha_a_buscar}")
+    lista_detalle_entradas = mostrar_detalle_entadas_x_fecha(fecha_a_buscar)
+
+    for item in lista_detalle_entradas:
+        print(f"Fecha: {item[1]}")
+        print(f"Hora: {item[2]}")
+        print(f"Activo: {item[3]}")
+        print(f"Sesión: {item[4]}")
+        print(f"Operación: {item[5]}")
+        print(f"Precio de entrada: {item[6]}")
+        print(f"Stop loss: {item[7]}")
+        print(f"Objetivo: {item[8]}")
+        print(f"Lotaje: {item[9]}")
+        print(f"Precio de salida 1: {item[10]}")
+        print(f"PNL: {item[11]}")
+        print(f"Comentarios p. salida 1: {item[12]}")
+        print("--------------------------------------")
+        print("\n\n")
         
 
-    if menu == 3:
-        print("Goodbye :)")
-        sys.exit(0)
+    
+
+def menu_principal_2():
+    pass
+
+def menu_principal_3():
+    print("Goodbye :)")
+    sys.exit(0)
+
+
+
         
 def convertir_str_a_fecha(fecha):
     from datetime import datetime
@@ -22,7 +63,7 @@ def convertir_str_a_fecha(fecha):
     return fecha
 
 
-def mostrar_entradas_x_dia():
+def lista_entradas_x_dia():
     
     journal_file = "journal.csv"
 
@@ -65,6 +106,32 @@ def mostrar_entradas_x_dia():
         #muestro las fechas de la lista en formato menú
         for count, item in enumerate(lista):
             print(f"{count+1}. {item}")
+        
+    return lista
+
+def mostrar_detalle_entadas_x_fecha(fecha_a_buscar):
+
+    journal_file = "journal.csv"
+
+    with open(journal_file) as journal_file:
+        csv_reader = csv.reader(journal_file, delimiter=";")
+
+        #creo una lista con el detalle de las entradas para
+        #la fecha elegida
+        lista = []
+
+        #asigno los datos a la lista y arranco el for a partir
+        #de la 2da fila 
+        count = 0
+        for row in csv_reader:
+            if count != 0:
+                if row[1] == fecha_a_buscar:
+                    lista.append(row)
+            
+            count += 1
+
+    return lista
+
 
         
 
