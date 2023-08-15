@@ -11,10 +11,17 @@ while True: #restart
     print("3. Salir")
     menu = int(input("\n\nIngrese una opción: "))
 
-    
-    #menú de opciones
-    function(menu)
+    if menu == 1:
+        #functions.py
+        menu_entradas_x_dia(menu)
 
+        print("holi")
+
+    if menu == 3:
+        print("Goodbye :)")
+        sys.exit(0)
+
+    
     tecla = input("\nPresione una tecla para continuar.")
     os.system("clear")
     continue
