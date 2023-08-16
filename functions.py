@@ -2,78 +2,78 @@
 import sys
 import csv
 
-def mostrar_menu_principal():
-    print("Menú principal:")
-    print("1. Listado de entradas x día")
-    print("2. Listado de entradas x activo")
-    print("3. Salir")
+def show_main_menu():
+    print("Main menu:")
+    print("1. List trades by date")
+    print("2. List trades by asset")
+    print("3. Exit")
 
-def menu_principal_1():
-    lista = lista_entradas_x_dia()
+def main_menu_1():
+    _list = list_trades_by_date()
 
     while True:
         
-        user_input = int(input("Ingrese opción: ")) 
+        user_input = int(input("Select option: ")) 
     
-        if user_input  > len(lista) or user_input < 1:
-            print("Opción no válida, vuelve a intentar.")
+        if user_input  > len(_list) or user_input < 1:
+            print("Option invalid, try again.")
             continue
         else:
             break
     
-    fecha_a_buscar = lista[user_input - 1]
-    print(f"\nFecha a buscar: {fecha_a_buscar}")
-    lista_detalle_entradas = mostrar_detalle_entadas_x_fecha(fecha_a_buscar)
+    date_to_find = _list[user_input - 1]
+    print(f"\nDate to find: {date_to_find}")
+    detailed_trades_list = show_detailed_trades_list_by_date(date_to_find)
 
-    for item in lista_detalle_entradas:
-        print(f"Fecha: {item[1]}")
-        print(f"Hora: {item[2]}")
-        print(f"Activo: {item[3]}")
-        print(f"Sesión: {item[4]}")
-        print(f"Operación: {item[5]}")
-        print(f"Precio de entrada: {item[6]}")
+    for item in detailed_trades_list:
+        print(f"Date: {item[1]}")
+        print(f"Time: {item[2]}")
+        print(f"Asset: {item[3]}")
+        print(f"Session: {item[4]}")
+        print(f"Entry type: {item[5]}")
+        print(f"Entry price: {item[6]}")
         print(f"Stop loss: {item[7]}")
-        print(f"Objetivo: {item[8]}")
-        print(f"Lotaje: {item[9]}")
-        print(f"Precio de salida 1: {item[10]}")
+        print(f"Target: {item[8]}")
+        print(f"Volume: {item[9]}")
+        print(f"Exit price 1: {item[10]}")
         print(f"PNL: {item[11]}")
-        print(f"Comentarios p. salida 1: {item[12]}")
+        print(f"Comments for exit price 1: {item[12]}")
         print("--------------------------------------")
         print("\n\n")
         
 
     
 
-def menu_principal_2():
-    lista = lista_entradas_x_activo()
+def main_menu_2():
+    _list = list_trades_by_asset()
 
     while True:
         
-        user_input = int(input("Ingrese opción: ")) 
+        user_input = int(input("Select option: ")) 
     
-        if user_input  > len(lista) or user_input < 1:
-            print("Opción no válida, vuelve a intentar.")
+        if user_input  > len(_list) or user_input < 1:
+            print("Option invalid, try again.")
             continue
         else:
             break
     
-    activo_a_buscar = lista[user_input - 1]
-    print(f"\nActivo a buscar: {activo_a_buscar}")
-    lista_detalle_entradas = mostrar_detalle_entadas_x_activo(activo_a_buscar)
+    asset_to_find = _list[user_input - 1]
+    print(f"\nActivo a buscar: {asset_to_find}")
+    detailed_trades_list = show_detailed_trades_list_by_asset(asset_to_find)
 
-    for item in lista_detalle_entradas:
-        print(f"Fecha: {item[1]}")
-        print(f"Hora: {item[2]}")
-        print(f"Activo: {item[3]}")
-        print(f"Sesión: {item[4]}")
-        print(f"Operación: {item[5]}")
-        print(f"Precio de entrada: {item[6]}")
+    for item in detailed_trades_list:
+        print(f"Date: {item[1]}")
+        print(f"Time: {item[2]}")
+        print(f"Asset: {item[3]}")
+        print(f"Session: {item[4]}")
+        print(f"Entry type: {item[5]}")
+        print(f"Entry price: {item[6]}")
         print(f"Stop loss: {item[7]}")
-        print(f"Objetivo: {item[8]}")
-        print(f"Lotaje: {item[9]}")
-        print(f"Precio de salida 1: {item[10]}")
+        print(f"Target: {item[8]}")
+        print(f"Volume: {item[9]}")
+        print(f"Exit price 1: {item[10]}")
         print(f"PNL: {item[11]}")
-        print(f"Comentarios p. salida 1: {item[12]}")
+        print(f"Comments for exit price 1: {item[12]}")
         print("--------------------------------------")
         print("\n\n")
 
@@ -82,7 +82,7 @@ def menu_principal_2():
 
 
 
-def menu_principal_3():
+def main_menu_3():
     print("Goodbye :)")
     sys.exit(0)
 
@@ -98,119 +98,109 @@ def convertir_str_a_fecha(fecha):
     return fecha
 
 
-def lista_entradas_x_dia():
+def list_trades_by_date():
     
     journal_file = "journal.csv"
 
     with open(journal_file) as journal_file:
         csv_reader = csv.reader(journal_file, delimiter=";")
 
-        #creo una lista de fechas únicas para el menú
-        lista = []
         
-        #asigno las fechas a la lista y arranco el for a partir
-        #de la 2da fila 
+        #make a list of unique dates for the menu
+        _list = []
+        
+        
+        #assign dates to the list and start iterating from the
+        #second element of the list
         count = 0
         for row in csv_reader:
             if count != 0:
-                lista.append(row[1])
+                _list.append(row[1])
             
             count += 1
 
         
-        #elimino cualquier valor en blanco que pueda haber
-        #en la lista
-        lista2 = []
-        for count, item in enumerate(lista):
+        
+        #delete any possible empty value in the list
+        _list2 = []
+        for count, item in enumerate(_list):
             if not item:
                 pass
             else:
-                lista2.append(item)
-        lista = lista2
+                if item not in _list2:
+                    _list2.append(item)
+        _list = list(_list2)
         
-        #elimino duplicados
-        lista2 = []
-        for item in lista:
-            if item not in lista2:
-                lista2.append(item)
-        
-        lista = list(lista2)
-        
-            
-        
-        #muestro las fechas de la lista en formato menú
-        for count, item in enumerate(lista):
+
+        #show dates of the list in menu format
+        for count, item in enumerate(_list):
             print(f"{count+1}. {item}")
         
-    return lista
+    return _list
 
 
 
-def lista_entradas_x_activo():
+def list_trades_by_asset():
     
     journal_file = "journal.csv"
 
     with open(journal_file) as journal_file:
         csv_reader = csv.reader(journal_file, delimiter=";")
 
-        #creo una lista de activos para el menú
-        lista = []
         
-        #asigno los activos a la lista y arranco el for a partir
-        #de la 2da fila 
+        #create a list of unique assets for the menu
+        _list = []
+        
+        
+        #assing assets to the list and start iterating from the 
+        #second element
         count = 0
         for row in csv_reader:
             if count != 0:
-                lista.append(row[3])
+                _list.append(row[3])
             
             count += 1
 
         
-        #elimino cualquier valor en blanco que pueda haber
-        #en la lista
-        lista2 = []
-        for count, item in enumerate(lista):
+        
+        #delete any possible empty value in the list
+        _list2 = []
+        for count, item in enumerate(_list):
             if not item:
                 pass
             else:
-                lista2.append(item)
-        lista = lista2
+                if item not in _list2:
+                    _list2.append(item)
+        _list = _list2
+         
         
-        #elimino duplicados
-        lista2 = []
-        for item in lista:
-            if item not in lista2:
-                lista2.append(item)
         
-        lista = list(lista2)
-        
-            
-        
-        #muestro las fechas de la lista en formato menú
-        for count, item in enumerate(lista):
+        #show list of dates in menu format
+        for count, item in enumerate(_list):
             print(f"{count+1}. {item}")
         
-    return lista
+    return _list
 
 
 
-def mostrar_detalle_entadas_x_fecha(fecha_a_buscar):
+def show_detailed_trades_list_by_date(date_to_find):
 
     journal_file = "journal.csv"
 
     with open(journal_file) as journal_file:
         csv_reader = csv.reader(journal_file, delimiter=";")
 
-        #creo una lista con el detalle de las entradas para
-        #la fecha elegida
+        
+        #create a list with trade details for the selected date
         lista = []
 
-        #asigno los datos a la lista y arranco el for a partir
-        #de la 2da fila 
+        
+        #assign data to the list and start iterating from the 
+        #second element
         count = 0
         for row in csv_reader:
             if count != 0:
-                if row[1] == fecha_a_buscar:
+                if row[1] == date_to_find:
                     lista.append(row)
             
             count += 1
@@ -220,28 +210,29 @@ def mostrar_detalle_entadas_x_fecha(fecha_a_buscar):
 
 
 
-def mostrar_detalle_entadas_x_activo(activo_a_buscar):
+def show_detailed_trades_list_by_asset(asset_to_find):
 
     journal_file = "journal.csv"
 
     with open(journal_file) as journal_file:
         csv_reader = csv.reader(journal_file, delimiter=";")
 
-        #creo una lista con el detalle de las entradas para
-        #la fecha elegida
-        lista = []
+        
+        #create a list with trade details for the selected asset
+        _list = []
 
-        #asigno los datos a la lista y arranco el for a partir
-        #de la 2da fila 
+        
+        #assign data to the list and start iterating from 
+        #the second element  
         count = 0
         for row in csv_reader:
             if count != 0:
-                if row[3] == activo_a_buscar:
-                    lista.append(row)
+                if row[3] == asset_to_find:
+                    _list.append(row)
             
             count += 1
 
-    return lista
+    return _list
 
 
         

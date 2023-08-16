@@ -6,17 +6,17 @@ os.system("clear")
 
 while True: #restart
 
-    mostrar_menu_principal()
-    user_input = int(input("\n\nIngrese una opción: "))
+    show_main_menu()
+    user_input = int(input("\n\nSelect option: "))
     
     if user_input == 1:
-        menu_principal_1()
+        main_menu_1()
     
     if user_input == 2:
-        menu_principal_2()
+        main_menu_2()
     
     if user_input == 3:
-        menu_principal_3()
+        main_menu_3()
 
 
     
