@@ -35,9 +35,19 @@ def main_menu_1():
         print(f"Stop loss: {item[7]}")
         print(f"Target: {item[8]}")
         print(f"Volume: {item[9]}")
-        print(f"Exit price 1: {item[10]}")
         print(f"PNL: {item[11]}")
+        print(f"Exit price 1: {item[10]}")
         print(f"Comments for exit price 1: {item[12]}")
+        print(f"Exit price 2: {item[13]}")
+        print(f"Comments for exit price 2: {item[14]}")
+        print(f"Entry image: {item[15]}")
+        print(f"Structure 1 image: {item[16]}")
+        print(f"Structure 2 image: {item[17]}")
+        print(f"Trade management: {item[18]}")
+        print(f"Trade management image 1: {item[19]}")
+        print(f"Trade management image 2: {item[20]}")
+        print(f"Trade management image 3: {item[21]}")
+        print(f"Trade management image 4: {item[22]}")
         print("--------------------------------------")
         print("\n\n")
         
@@ -71,9 +81,19 @@ def main_menu_2():
         print(f"Stop loss: {item[7]}")
         print(f"Target: {item[8]}")
         print(f"Volume: {item[9]}")
-        print(f"Exit price 1: {item[10]}")
         print(f"PNL: {item[11]}")
+        print(f"Exit price 1: {item[10]}")
         print(f"Comments for exit price 1: {item[12]}")
+        print(f"Exit price 2: {item[13]}")
+        print(f"Comments for exit price 2: {item[14]}")
+        print(f"Entry image: {item[15]}")
+        print(f"Structure 1 image: {item[16]}")
+        print(f"Structure 2 image: {item[17]}")
+        print(f"Trade management: {item[18]}")
+        print(f"Trade management image 1: {item[19]}")
+        print(f"Trade management image 2: {item[20]}")
+        print(f"Trade management image 3: {item[21]}")
+        print(f"Trade management image 4: {item[22]}")
         print("--------------------------------------")
         print("\n\n")
 
@@ -192,7 +212,7 @@ def show_detailed_trades_list_by_date(date_to_find):
 
         
         #create a list with trade details for the selected date
-        lista = []
+        _list = []
 
         
         #assign data to the list and start iterating from the 
@@ -201,11 +221,11 @@ def show_detailed_trades_list_by_date(date_to_find):
         for row in csv_reader:
             if count != 0:
                 if row[1] == date_to_find:
-                    lista.append(row)
+                    _list.append(row)
             
             count += 1
 
-    return lista
+    return _list
 
 
 
