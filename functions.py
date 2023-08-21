@@ -1,3 +1,8 @@
+#************* VER COMO IMPLEMENTAR DATA FRAMES PARA MEJORAR ****************
+#************* LA LEGIBILIDAD Y DESPUES AGREGAR LA FUNCIÓN ******************
+#*************        EDITAR JOURNAL
+
+
 
 import sys
 import csv
@@ -6,7 +11,8 @@ def show_main_menu():
     print("Main menu:")
     print("1. List trades by date")
     print("2. List trades by asset")
-    print("3. Exit")
+    print("3. Edit trading journal")
+    print("4. Exit")
 
 def main_menu_1():
     _list = list_trades_by_date()
@@ -98,11 +104,12 @@ def main_menu_2():
         print("\n\n")
 
     
-
-
-
-
 def main_menu_3():
+    pass
+
+
+
+def main_menu_4():
     print("Goodbye :)")
     sys.exit(0)
 

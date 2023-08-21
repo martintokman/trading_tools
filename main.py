@@ -14,9 +14,12 @@ while True: #restart
     
     if user_input == 2:
         main_menu_2()
-    
+
     if user_input == 3:
         main_menu_3()
+    
+    if user_input == 4:
+        main_menu_4()
 
 
     
